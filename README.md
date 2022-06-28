@@ -1,1 +1,1 @@
-# compiler by Breno Hasparyk and Eduardo Gonçalves
+# Compiler by Breno Hasparyk and Eduardo Gonçalves
