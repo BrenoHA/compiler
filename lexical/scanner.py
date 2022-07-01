@@ -1,4 +1,4 @@
-from token import Token
+from my_token import my_Token
 
-test_token = Token("classeb", "lexemabb", "tipoB")
+test_token = my_Token("classeb", "lexemabb", "tipoB")
 print(test_token.get_token())
