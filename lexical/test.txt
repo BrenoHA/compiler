@@ -1,0 +1,8 @@
+inicio
+varinicio
+B<-B+3;
+B<-B+1;
+literal A, B;
+inteiro B;
+escreva "B esta entre 2 e 4";
+escreva "\nB=\n";

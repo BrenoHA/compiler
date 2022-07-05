@@ -1,4 +1,5 @@
 from my_token import my_Token
+from utils.guidelines import *
 
 
 class Symbol_table:
@@ -7,20 +8,23 @@ class Symbol_table:
         self.set_reserved_keywords()
 
     def set_reserved_keywords(self):
-        reserved_keywords = ['inicio', 'varinicio', 'varfim', 'escreva',
-                             'leia', 'se', 'entao', 'fimse', 'repita', 'fimRepita', 'fim', 'inteiro', 'literal', 'real']
-
-        for keyword in reserved_keywords:
+        for keyword in palavras_reservadas:
             self.table.append(my_Token(keyword, keyword, keyword))
 
     def get_table(self):
         print('Tabela de Simbolos:')
         for item in self.table:
-            print(' -> {}, {}, {}'.format(item.classe, item.lexema, item.tipo))
+            print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
+
+    def get_tokens(self):
+        print('Tokens:')
+        for item in self.table:
+            if(palavras_reservadas.count(item.lexema) == 0):
+                print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
 
     def insert_table(self, my_Token):
-        print('Inserindo o Token(classe: {}, lexema: {}, tipo: {} ):'.format(
-            my_Token.classe, my_Token.lexema, my_Token.tipo))
+        print('Inserindo o Token(Lexema: {}, Classe: {}, Tipo: {} ):'.format(
+            my_Token.lexema, my_Token.classe, my_Token.tipo))
         self.table.append(my_Token)
 
     def search_table(self, lexema):
@@ -29,7 +33,7 @@ class Symbol_table:
         for item in self.table:
             if(item.lexema == lexema):
                 hasToken = True
-                print(' -> {}, {}, {}'.format(item.classe, item.lexema, item.tipo))
+                print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
                 return item
         if(hasToken == False):
             print('Token com lexema: "{}" não encontrado'.format(lexema))
@@ -45,11 +49,12 @@ class Symbol_table:
 
 
 t = Symbol_table()
-test_token = my_Token("class_insert", "class_lexema", "class_tipo")
-# t.insert_table(test_token)
+test_token = my_Token("lexAaaa", "clasAa", "TipoA")
+t.insert_table(test_token)
 # t.update_table('class_lexema', 'new_class_lexema')
-t.get_table()
-t.search_table("inicioo")
+# t.get_table()
+t.get_tokens()
+# t.search_table("inicioo")
 
 
 # a. Armazenará, EXCLUSIVAMENTE, tokens ID (reconhecidos pelo scanner) e palavras reservadas da linguagem.

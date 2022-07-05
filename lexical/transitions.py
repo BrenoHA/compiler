@@ -40,6 +40,12 @@ def pertence_alfabeto(caracter):
         return False
 
 
+def transicao(state, symbol):
+    # Retornar só o estado
+    # A classe e o Tipo, fazer em outra função/arquivo
+    print('ok')
+
+
 def funcao_de_transicao(state, symbol):
     if state[0] == "q0":
         if symbol in numbers_dict:

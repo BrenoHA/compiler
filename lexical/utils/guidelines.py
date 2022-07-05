@@ -3,4 +3,8 @@ letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", 
           "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "x", "y", "z"]
 demais_caracteres = [",", ";", ":", ".", "!", "?", "\\", "*",
                      "+", "-", "/", "(", ")", "{", "}", "[", "]", "<", ">", "=", "‘", "“"]
+
 alfabeto = digitos + letras + demais_caracteres
+
+palavras_reservadas = ['inicio', 'varinicio', 'varfim', 'escreva', 'leia', 'se', 'entao',
+                       'fimse', 'repita', 'fimRepita', 'fim', 'inteiro', 'literal', 'real']
