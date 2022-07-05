@@ -2,13 +2,14 @@ from ast import Num
 from lib2to3.pgen2.grammar import opmap
 from ssl import OP_NO_RENEGOTIATION
 from typing import Literal
-from util.grammar import *
+from utils.alfabeto import *
+
 
 # q0 estado inicial
 # q1 num_final
 # q1_1 num
 # q1_2 num_final
-# q1_3 num 
+# q1_3 num
 # q1_4 num
 # q1_5 num_final
 # q1_6 num
@@ -31,6 +32,12 @@ from util.grammar import *
 # q13 vir_final
 # q14 erro
 
+
+def pertence_alfabeto(caracter):
+    if(caracter in alfabeto):
+        return True
+    else:
+        return False
 
 
 def funcao_de_transicao(state, symbol):
@@ -64,7 +71,7 @@ def funcao_de_transicao(state, symbol):
         else:
             return ["Se", "2"]
 
-    if state[0] =="q1":
+    if state[0] == "q1":
         if symbol in numbers_dict:
             return ["q1", "num_final"]
         elif symbol == ".":
@@ -74,7 +81,7 @@ def funcao_de_transicao(state, symbol):
         else:
             return ["Se", "2"]
 
-    if state[0] =="q1_1":
+    if state[0] == "q1_1":
         if symbol in numbers_dict:
             return ["q1_2", "num_final"]
         else:
@@ -85,7 +92,7 @@ def funcao_de_transicao(state, symbol):
             return ["q1_2", "num_final"]
         elif symbol == "e" or symbol == "E":
             #q1_6 = s4
-            return ["q1_6", "num"] 
+            return ["q1_6", "num"]
         else:
             return ["Se", "2"]
 
@@ -123,13 +130,13 @@ def funcao_de_transicao(state, symbol):
         else:
             return ["s8", "3"]
 
-    if state[0] ==  "Se" and state[1] == "1":
+    if state[0] == "Se" and state[1] == "1":
         return ["Se", "1"]
 
-    if  state[0] == "Se" and state[1] == "2":
+    if state[0] == "Se" and state[1] == "2":
         return ["Se", "2"]
 
-    if state[0] ==  "s9" or state[0] ==  "s13" or state[0] ==  "s14" or state[0] ==  "s17" or state[0] ==  "s18" or state[0] ==  "s19" or state[0] ==  "s20" or state[0] ==  "s21" or state[0] ==  "s22" or state[0] ==  "s23" or state[0] ==  "s24":
+    if state[0] == "s9" or state[0] == "s13" or state[0] == "s14" or state[0] == "s17" or state[0] == "s18" or state[0] == "s19" or state[0] == "s20" or state[0] == "s21" or state[0] == "s22" or state[0] == "s23" or state[0] == "s24":
         return ["Se", "2"]
 
     if state[0] == "s10":

@@ -7,45 +7,35 @@ class Symbol_table:
         self.set_reserved_keywords()
 
     def set_reserved_keywords(self):
-        self.table.append(my_Token("inicio", "inicio", "inicio"))
-        self.table.append(my_Token("varinicio", "varinicio", "varinicio"))
-        self.table.append(my_Token("varfim", "varfim", "varfim"))
-        self.table.append(my_Token("escreva", "escreva", "escreva"))
-        self.table.append(my_Token("leia", "leia", "leia"))
-        self.table.append(my_Token("se", "se", "se"))
-        self.table.append(my_Token("entao", "entao", "entao"))
-        self.table.append(my_Token("fimse", "fimse", "fimse"))
-        self.table.append(my_Token("Repita", "Repita", "Repita"))
-        self.table.append(my_Token("fimRepita", "fimRepita", "fimRepita"))
-        self.table.append(my_Token("fim", "fim", "fim"))
-        self.table.append(my_Token("inteiro", "inteiro", "inteiro"))
-        self.table.append(my_Token("literal", "literal", "literal"))
-        self.table.append(my_Token("real", "real", "real"))
+        reserved_keywords = ['inicio', 'varinicio', 'varfim', 'escreva',
+                             'leia', 'se', 'entao', 'fimse', 'repita', 'fimRepita', 'fim', 'inteiro', 'literal', 'real']
 
+        for keyword in reserved_keywords:
+            self.table.append(my_Token(keyword, keyword, keyword))
 
     def get_table(self):
         print('Tabela de Simbolos:')
         for item in self.table:
             print(' -> {}, {}, {}'.format(item.classe, item.lexema, item.tipo))
-    
-    def insert_table(self,my_Token):
-        print('Inserindo o Token(classe: {}, lexema: {}, tipo: {} ):'.format(my_Token.classe,my_Token.lexema,my_Token.tipo))
+
+    def insert_table(self, my_Token):
+        print('Inserindo o Token(classe: {}, lexema: {}, tipo: {} ):'.format(
+            my_Token.classe, my_Token.lexema, my_Token.tipo))
         self.table.append(my_Token)
 
-
-    def search_table(self,lexema):
-        searched_token = None
+    def search_table(self, lexema):
+        hasToken = False
         print('Procurando o Token com lexema: {}'.format(lexema))
         for item in self.table:
             if(item.lexema == lexema):
-                searched_Token = item
+                hasToken = True
                 print(' -> {}, {}, {}'.format(item.classe, item.lexema, item.tipo))
                 return item
-        if(len(searched_token)==0):
-            print('Token com lexema: {} não encontrado'.format(lexema))
+        if(hasToken == False):
+            print('Token com lexema: "{}" não encontrado'.format(lexema))
             return None
-            
-    def update_table(self,old_lexema,new_lexema):
+
+    def update_table(self, old_lexema, new_lexema):
         print('Atualizando o Token com lexema: {}'.format(old_lexema))
         if(self.search_table(old_lexema) is None):
             return("Token não encontrado")
@@ -53,12 +43,13 @@ class Symbol_table:
             old_token = self.search_table(old_lexema)
             old_token.lexema = new_lexema
 
+
 t = Symbol_table()
 test_token = my_Token("class_insert", "class_lexema", "class_tipo")
-t.insert_table(test_token)
-t.update_table('class_lexema','new_class_lexema')
+# t.insert_table(test_token)
+# t.update_table('class_lexema', 'new_class_lexema')
 t.get_table()
-# t.search_table("inicio")
+t.search_table("inicioo")
 
 
 # a. Armazenará, EXCLUSIVAMENTE, tokens ID (reconhecidos pelo scanner) e palavras reservadas da linguagem.
