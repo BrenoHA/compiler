@@ -1,5 +1,4 @@
 import os
-# from my_token import my_Token
 
 
 class my_Scanner:
@@ -18,7 +17,5 @@ class my_Scanner:
         return lines
 
 
-# test_token = my_Token("classeb", "lexemabb", "tipoB")
-# print(test_token.get_token())
 test_scanner = my_Scanner()
 test_scanner.read_text("test_file.txt")
