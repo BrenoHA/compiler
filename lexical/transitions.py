@@ -34,16 +34,13 @@ from utils.guidelines import *
 
 
 def pertence_alfabeto(symbol):
-    if(caracter in alfabeto):
+    if(symbol in alfabeto):
         return True
     else:
         return False
 
 
 def funcao_de_transicao(state, symbol):
-    # Retornar só o estado
-    # A classe e o Tipo, fazer em outra função/arquivo
-
     print('ok')
     if(pertence_alfabeto(symbol) == False):
         return "ERRO: Caracter não pertence ao alfabeto"
