@@ -2,7 +2,7 @@ from ast import Num
 from lib2to3.pgen2.grammar import opmap
 from ssl import OP_NO_RENEGOTIATION
 from typing import Literal
-from utils.alfabeto import *
+from utils.guidelines import *
 
 
 # q0 estado inicial
@@ -33,148 +33,143 @@ from utils.alfabeto import *
 # q14 erro
 
 
-def pertence_alfabeto(caracter):
+def pertence_alfabeto(symbol):
     if(caracter in alfabeto):
         return True
     else:
         return False
 
 
-def transicao(state, symbol):
+def funcao_de_transicao(state, symbol):
     # Retornar só o estado
     # A classe e o Tipo, fazer em outra função/arquivo
+
     print('ok')
+    if(pertence_alfabeto(symbol) == False):
+        return "ERRO: Caracter não pertence ao alfabeto"
 
-
-def funcao_de_transicao(state, symbol):
-    if state[0] == "q0":
-        if symbol in numbers_dict:
-            return ["q1", "num_final"]
+    if state == "q0":
+        if symbol in digitos:
+            return "q1"
         elif symbol == '"':
-            return ["q2", "num"]
-        elif symbol in letras:
-            return ["q3", "id_final"]
+            return "q2"
+        elif symbol in letras or digitos or '_':
+            return "q3"
         elif symbol == "{":
-            return ["q4", "comentario"]
-        elif symbol == "fim":
-            return ["q5", "eof_final"]
+            return "q4"
+        elif symbol == "EOF":  # fim
+            return "q5"
         elif symbol == "<":
-            return ["q6", "opr_final"]
+            return "q6"
         elif symbol == "=":
-            return ["q7", "opr_final"]
+            return "q7"
         elif symbol == ">":
-            return ["q8", "opr_final"]
-        elif symbol == "+" or symbol == "-" or symbol == "*" or symbol == "/":
-            return ["q9", "opm_final"]
+            return "q8"
+        elif symbol == "+" or "-" or "*" or "/":
+            return "q9"
         elif symbol == "(":
-            return ["q10", "ab_p_final"]
+            return "q10"
         elif symbol == ")":
-            return ["q11", "fc_p_final"]
+            return "q11"
         elif symbol == ";":
-            return ["q12", "pt_v_final"]
+            return "q12"
         elif symbol == ",":
-            return ["q13", "vir_final"]
+            return "q13"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1":
-        if symbol in numbers_dict:
-            return ["q1", "num_final"]
-        elif symbol == ".":
-            return ["q1_1", "num"]
-        elif symbol == "e" or symbol == "E":
-            return ["q1_3", "Num"]
+    if state == "q1":
+        if symbol in digitos:
+            return "q1"
+        elif symbol == ".":  # \.
+            return "q1_1"
+        elif symbol == "E" or "e":
+            return "q1_3"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1_1":
-        if symbol in numbers_dict:
-            return ["q1_2", "num_final"]
+    if state == "q1_1":
+        if symbol in digitos:
+            return "q1_2"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1_2":
-        if symbol in numbers_dict:
-            return ["q1_2", "num_final"]
-        elif symbol == "e" or symbol == "E":
-            #q1_6 = s4
-            return ["q1_6", "num"]
+    if state == "q1_2":
+        if symbol in digitos:
+            return "q1_2"
+        elif symbol == "E" or "e":
+            return "q1_6"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1_6":
-        if symbol == "+" or symbol == "-":
-            #q1_7 = s5
-            return ["q1_7", "num"]
-        if symbol in numbers_dict:
-            #q1_8 = s6
-            return["q1_8", "num_final"]
+    if state == "q1_6":
+        if symbol in digitos:
+            return "q1_8"
+        elif symbol == "+" or "-":
+            return "q1_7"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1_7":
-        if symbol in numbers_dict:
-            return["q1_8", "num_final"]
+    if state == "q1_7":
+        if symbol in digitos:
+            return "q1_8"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q1_8":
-        if symbol in numbers_dict:
-            return ["q1_8", "num"]
+    if state == "q1_8":
+        if symbol in digitos:
+            return "q1_8"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "q2":
-        if symbol == '"':
-            return ["q2_1", "lit_final"]
+    if state == "q2":
+        if symbol == ".":
+            return "q2"
+        elif symbol == '"':
+            return "q2_1"
         else:
-            return ["s8", "3"]
+            return "q14"
 
-    if state[0] == "s8":
-        if symbol == '"':
-            return ["q2_1", "lit_final"]
+    # if state == "q2_1": Do Nothing
+
+    if state == "q3":
+        if symbol in letras or digitos or '_':
+            return "q3"
         else:
-            return ["s8", "3"]
+            return "q14"
 
-    if state[0] == "Se" and state[1] == "1":
-        return ["Se", "1"]
-
-    if state[0] == "Se" and state[1] == "2":
-        return ["Se", "2"]
-
-    if state[0] == "s9" or state[0] == "s13" or state[0] == "s14" or state[0] == "s17" or state[0] == "s18" or state[0] == "s19" or state[0] == "s20" or state[0] == "s21" or state[0] == "s22" or state[0] == "s23" or state[0] == "s24":
-        return ["Se", "2"]
-
-    if state[0] == "s10":
-        if symbol in letras+numbers_dict or symbol == "_":
-            return ["s10", "id"]
+    if state == "q4":
+        if symbol == ".":
+            return "q4"
+        elif symbol == "":
+            return "q4_1"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "s11":
-        if symbol == "}":
-            return ["s13", "Comentário"]
-        else:
-            return ["s12", "4"]
+    # if state == "q5": Do Nothing
 
-    if state[0] == "s12":
-        if symbol == "}":
-            return ["s13", "Comentário"]
-        else:
-            return ["s12", "4"]
-
-    if state[0] == "s15":
+    if state == "q6":
         if symbol == "=":
-            return ["s21", "OPR"]
-        elif symbol == ">":
-            return ["s22", "OPR"]
-        if symbol == "-":
-            return ["s23", "RCB"]
+            return "q7"
         else:
-            return ["Se", "2"]
+            return "q14"
 
-    if state[0] == "s16":
-        if symbol == "=":
-            return ["s24", "OPR"]
+    # if state == "q7": Do Nothing
+
+    if state == "q8":
+        if symbol == ">" or "=":
+            return "q7"
+        elif symbol == "-":
+            return "q8_1"
         else:
-            return ["Se", "2"]
+            return "q14"
+
+    # if state == "q9": Do Nothing
+
+    # if state == "q10": Do Nothing
+
+    # if state == "q11": Do Nothing
+
+    # if state == "q12": Do Nothing
+
+    # if state == "q13": Do Nothing

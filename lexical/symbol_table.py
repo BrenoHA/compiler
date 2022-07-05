@@ -14,13 +14,15 @@ class Symbol_table:
     def get_table(self):
         print('Tabela de Simbolos:')
         for item in self.table:
-            print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
+            print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
+                                                                  item.classe, item.tipo))
 
     def get_tokens(self):
         print('Tokens:')
         for item in self.table:
             if(palavras_reservadas.count(item.lexema) == 0):
-                print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
+                print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
+                                                                      item.classe, item.tipo))
 
     def insert_table(self, my_Token):
         print('Inserindo o Token(Lexema: {}, Classe: {}, Tipo: {} ):'.format(
@@ -33,7 +35,8 @@ class Symbol_table:
         for item in self.table:
             if(item.lexema == lexema):
                 hasToken = True
-                print(' -> {}, {}, {}'.format(item.lexema, item.classe, item.tipo))
+                print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
+                                                                      item.classe, item.tipo))
                 return item
         if(hasToken == False):
             print('Token com lexema: "{}" não encontrado'.format(lexema))
