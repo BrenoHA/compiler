@@ -1,6 +1,7 @@
 def main():
     print("Rodando")
 
+
 # Programa principal:
 # - Efetuará a abertura do arquivo fonte;
 # - Conterá uma estrutura de repetição que:

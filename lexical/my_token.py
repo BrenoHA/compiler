@@ -1,16 +1,16 @@
 class my_Token:
-    def __init__(self, classe, lexema, tipo):
-        self.classe = classe
+    def __init__(self, lexema, classe,  tipo):
         self.lexema = lexema
+        self.classe = classe
         self.tipo = tipo
 
-    def set_token(self, classe, lexema, tipo):
+    def set_token(self, lexema, classe,  tipo):
         self.classe = classe
         self.lexema = lexema
         self.tipo = tipo
 
     def get_token(self):
-        return 'Token:\n Classe: {}\n Lexema: {}\n Tipo: {}\n'.format(self.classe, self.lexema, self.tipo)
+        return 'Token:\n Lexema: {}\n Classe: {}\n Tipo: {}\n'.format(self.lexema, self.classe, self.tipo)
 
 
 # - Classe: armazenará a classificação do lexema reconhecido;
