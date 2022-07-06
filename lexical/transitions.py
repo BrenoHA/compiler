@@ -14,7 +14,7 @@ def pertence_alfabeto(symbol):
 
 def funcao_de_transicao(state, symbol):
     if(pertence_alfabeto(symbol) == False):
-        return "ERRO: Caracter não pertence ao alfabeto"
+        return "ERRO: Caracter {} não pertence ao alfabeto".format(symbol)
 
     if state == "q0":
         if symbol in digitos:
@@ -142,6 +142,9 @@ def funcao_de_transicao(state, symbol):
 
     # if state == "q13": Do Nothing
 
+    else:
+        return state
+
 
 def define_classe_tipo(state):
     classe = None
@@ -183,4 +186,5 @@ def define_classe_tipo(state):
 
 print(funcao_de_transicao("q0", "{"))
 print(funcao_de_transicao("q0", "["))
+print(funcao_de_transicao("q0", "%"))
 print(define_classe_tipo("q8_1"))
