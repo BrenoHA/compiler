@@ -37,7 +37,7 @@ class my_Scanner:
             self.current_token = ""
 
             # print current line
-            print(f"Line ({index_line}) --> {line} ")
+            # print(f"Line ({index_line}) --> {line} ")
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
@@ -67,8 +67,8 @@ class my_Scanner:
 
                 self.current_token += char
                 # print current column
-                print(
-                    f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
+                # print(
+                #     f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
                 self.last_state = self.current_state
                 self.current_state = funcao_de_transicao(
                     self.current_state, char)
@@ -97,12 +97,11 @@ table = Symbol_table()
 
 test_scanner = my_Scanner("test.txt")
 print("========================================================")
+print("================ INICIANDO SCANNER =====================")
 print("========================================================")
 test_scanner.scanner()
 
-
-table.get_table()
-
+# table.get_table()
 
 print("Elements_print:")
 for item in test_scanner.elements_print:

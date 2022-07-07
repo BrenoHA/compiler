@@ -31,8 +31,8 @@ class Symbol_table:
         else:
             if(my_Token.classe == "ID"):
                 if(not self.search_table(my_Token.lexema)):
-                    print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
-                        my_Token.lexema, my_Token.classe, my_Token.tipo))
+                    # print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
+                    #     my_Token.lexema, my_Token.classe, my_Token.tipo))
                     self.table.append(my_Token)
                 return my_Token
             else:
@@ -43,17 +43,17 @@ class Symbol_table:
         for item in self.table:
             if(item.lexema == lexema):
                 hasToken = True
-                print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
-                                                                      item.classe, item.tipo))
+                # print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
+                #                                                       item.classe, item.tipo))
                 return item
         if(hasToken == False):
-            print('Token com lexema: "{}" não encontrado'.format(lexema))
+            # print('Token com lexema: "{}" não encontrado'.format(lexema))
             return None
 
     def update_table(self, old_lexema, new_lexema):
-        print('Atualizando o Token com lexema: {}'.format(old_lexema))
+        # print('Atualizando o Token com lexema: {}'.format(old_lexema))
         if(self.search_table(old_lexema) is None):
-            return("Token não encontrado")
+            return("O Token atual não foi encontrado")
         else:
             old_token = self.search_table(old_lexema)
             old_token.lexema = new_lexema

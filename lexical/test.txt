@@ -1,15 +1,15 @@
 inicio
-    varinicio
+    varinaaicio
         literal A, B;
         inteiro B;
-        inteiro D;
+        inte%iro D;
         real C ;
     varfim;
-    escreva "Digite B:";
+    escr.eva "Digite B:";
     leia B;
-    escreva "Digite A:";
+    esc#reva "Digite A:";
     leia A;
-    se(B>2)
+    se(B>2.)
     entao
         se(B<=4)
         entao

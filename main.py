@@ -1,5 +1,6 @@
 def main():
-    print("Rodando")
+
+    print(">>>>")
 
 
 # Programa principal:
@@ -9,6 +10,5 @@ def main():
 #  -- A cada TOKEN retornado pelo SCANNER, emitir mensagem conforme à seguir:
 #     Classe: Num, Lexema: 123, Tipo: NULL
 #  -- O loop só finalizará após a leitura de todo o Código Fonte
-
 
 main()
