@@ -54,13 +54,12 @@ class my_Scanner:
                     classe, tipo, isFinal = define_classe_tipo(
                         self.current_state)
                     if(isFinal == True):
-                        if(funcao_de_transicao(self.current_state, char) == "q14"):
-                            token = my_Token(
-                                self.current_token.lstrip(), classe, tipo)
-                            token_from_table = table.insert_table(token)
-                            self.elements_print.append(token_from_table)
-                            self.current_token = ""
-                            self.current_state = "q0"
+                        token = my_Token(
+                            self.current_token.lstrip(), classe, tipo)
+                        token_from_table = table.insert_table(token)
+                        self.elements_print.append(token_from_table)
+                        self.current_token = ""
+                        self.current_state = "q0"
                     else:
                         print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
                             index_line + 1, index_char + 1, self.current_state))
@@ -72,6 +71,20 @@ class my_Scanner:
                 self.last_state = self.current_state
                 self.current_state = funcao_de_transicao(
                     self.current_state, char)
+
+                if(index_char == len(line)-1):
+                    classe, tipo, isFinal = define_classe_tipo(
+                        self.current_state)
+                    if(isFinal == True):
+                        token = my_Token(
+                            self.current_token.lstrip(), classe, tipo)
+                        token_from_table = table.insert_table(token)
+                        self.elements_print.append(token_from_table)
+                        self.current_token = ""
+                        self.current_state = "q0"
+                    else:
+                        print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
+                            index_line + 1, index_char + 1, self.current_state))
 
         # Adiciona End Of File
         final_token = my_Token("EOF", "EOF", None)
