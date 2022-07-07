@@ -1,5 +1,11 @@
-escreva;B<-B+2;
 B<-B+3;
-D<-B;
-fimse
-asd
+    D<-B;
+C<-5.0;
+    repiçta (B<5)
+        C<-B+2;
+        escreva C;
+        B<-B+1;
+fimrepita
+    escreva "\nB=\n";
+    escreva D;
+    escreva "\n";

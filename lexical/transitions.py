@@ -183,4 +183,4 @@ def define_classe_tipo(state):
 # print(funcao_de_transicao("q0", "{"))
 # print(funcao_de_transicao("q0", "["))
 # print(funcao_de_transicao("q0", "%"))
-print(define_classe_tipo("q8_1"))
+# print(define_classe_tipo("q8_1"))

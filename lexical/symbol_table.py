@@ -60,13 +60,13 @@ class Symbol_table:
             old_token.lexema = new_lexema
 
 
-t = Symbol_table()
-test_token = my_Token("lexAaaa", "clasAa", None)
-print(test_token)
-t.insert_table(test_token)
+# t = Symbol_table()
+# test_token = my_Token("lexAaaa", "clasAa", None)
+# print(test_token)
+# t.insert_table(test_token)
 # t.update_table('class_lexema', 'new_class_lexema')
 
-t.get_tokens()
+# t.get_tokens()
 # t.search_table("inicioo")
 
 
