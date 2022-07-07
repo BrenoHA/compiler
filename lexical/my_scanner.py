@@ -37,13 +37,18 @@ class my_Scanner:
             self.current_token = ""
 
             # print current line
-            # print(f"Line ({index_line}) --> {line} ")
+            print(f"Line ({index_line}) --> {line} ")
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
                     print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
                         index_line + 1, index_char + 1, char))
 
+                # if(char == "\\" and line[index_char+1] == "n"):
+                #     if(line[index_char-1] != '"' or line[index_char-1] != '{'):
+                #         print(line[index_char-1])
+                #         print(line[index_char])
+                #         print(line[index_char+1])
                 # Vendo futur_state
                 if(funcao_de_transicao(self.current_state, char) == "q14"):
                     classe, tipo, isFinal = define_classe_tipo(
@@ -62,8 +67,8 @@ class my_Scanner:
 
                 self.current_token += char
                 # print current column
-                # print(
-                #     f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
+                print(
+                    f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
                 self.last_state = self.current_state
                 self.current_state = funcao_de_transicao(
                     self.current_state, char)

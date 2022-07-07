@@ -10,12 +10,8 @@ def funcao_de_transicao(state, symbol):
     if state == "q0":
         if symbol == " ":
             return "q0"
-        elif symbol in digitos:
-            return "q1"
         elif symbol == '"':
             return "q2"
-        elif symbol in letras:
-            return "q3"
         elif symbol == "{":
             return "q4"
         elif symbol == "EOF":  # fim
@@ -36,6 +32,10 @@ def funcao_de_transicao(state, symbol):
             return "q12"
         elif symbol == ",":
             return "q13"
+        elif symbol in digitos:
+            return "q1"
+        elif symbol in letras:
+            return "q3"
         else:
             return "q14"
 
@@ -84,10 +84,10 @@ def funcao_de_transicao(state, symbol):
             return "q14"
 
     elif state == "q2":
-        if symbol in alfabeto:
-            return "q2"
-        elif symbol == '"':
+        if symbol == '"':
             return "q2_1"
+        elif symbol in alfabeto:
+            return "q2"
         else:
             return "q14"
 
@@ -100,10 +100,10 @@ def funcao_de_transicao(state, symbol):
             return "q14"
 
     elif state == "q4":
-        if symbol in alfabeto:
-            return "q4"
-        elif symbol == "":
+        if symbol == "}":
             return "q4_1"
+        elif symbol in alfabeto:
+            return "q4"
         else:
             return "q14"
 
@@ -182,5 +182,7 @@ def define_classe_tipo(state):
 
 # print(funcao_de_transicao("q0", "{"))
 # print(funcao_de_transicao("q0", "["))
-# print(funcao_de_transicao("q0", "%"))
+# print(funcao_de_transicao("q0", '{'))
+# print(funcao_de_transicao("q4", "a"))
+# print(funcao_de_transicao("q4", '}'))
 # print(define_classe_tipo("q8_1"))
