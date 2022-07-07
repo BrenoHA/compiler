@@ -14,9 +14,6 @@ class my_Scanner:
         self.elements_print: my_Token = []
         self.read_text(text_file)
 
-    def get_codigo_fonte(self):  # ?
-        return self.codigo_fonte
-
     def pertence_alfabeto(self, symbol):
         if(symbol in alfabeto):
             return True
@@ -40,7 +37,7 @@ class my_Scanner:
             self.current_token = ""
 
             # print current line
-            print(f"Line ({index_line}) --> {line} ")
+            # print(f"Line ({index_line}) --> {line} ")
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
@@ -65,8 +62,8 @@ class my_Scanner:
 
                 self.current_token += char
                 # print current column
-                print(
-                    f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
+                # print(
+                #     f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
                 self.last_state = self.current_state
                 self.current_state = funcao_de_transicao(
                     self.current_state, char)
@@ -80,7 +77,6 @@ class my_Scanner:
 table = Symbol_table()
 
 test_scanner = my_Scanner("test.txt")
-# print(test_scanner.get_codigo_fonte())
 print("========================================================")
 print("========================================================")
 test_scanner.scanner()

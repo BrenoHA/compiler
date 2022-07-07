@@ -30,11 +30,10 @@ class Symbol_table:
             return self.search_table(my_Token.lexema)
         else:
             if(my_Token.classe == "ID"):
-                # for element in self.table:
-                # TODO VER SE JÁ NÃO EXISTE O LEXEMA
-                print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
-                    my_Token.lexema, my_Token.classe, my_Token.tipo))
-                self.table.append(my_Token)
+                if(not self.search_table(my_Token.lexema)):
+                    print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
+                        my_Token.lexema, my_Token.classe, my_Token.tipo))
+                    self.table.append(my_Token)
                 return my_Token
             else:
                 return my_Token
@@ -60,14 +59,22 @@ class Symbol_table:
             old_token.lexema = new_lexema
 
 
+# print("-------------------")
 # t = Symbol_table()
-# test_token = my_Token("lexAaaa", "clasAa", None)
-# print(test_token)
+# test_token = my_Token("A", "ID", None)
 # t.insert_table(test_token)
-# t.update_table('class_lexema', 'new_class_lexema')
+# test_token = my_Token("repita", "ID", None)
+# t.insert_table(test_token)
+# test_token = my_Token("B", "ID", None)
+# t.insert_table(test_token)
+# test_token = my_Token("A", "ID", None)
+# t.insert_table(test_token)
 
-# t.get_tokens()
+# t.update_table('lexAaaa', 'new_class_lexema')
 # t.search_table("inicioo")
+
+# t.get_table()
+# t.get_tokens()
 
 
 # a. Armazenará, EXCLUSIVAMENTE, tokens ID (reconhecidos pelo scanner) e palavras reservadas da linguagem.
