@@ -5,19 +5,12 @@ from typing import Literal
 from utils.guidelines import *
 
 
-def pertence_alfabeto(symbol):
-    if(symbol in alfabeto):
-        return True
-    else:
-        return False
-
-
 def funcao_de_transicao(state, symbol):
-    if(pertence_alfabeto(symbol) == False):
-        return "ERRO: Caracter {} não pertence ao alfabeto".format(symbol)
 
     if state == "q0":
-        if symbol in digitos:
+        if symbol == " ":
+            return "q0"
+        elif symbol in digitos:
             return "q1"
         elif symbol == '"':
             return "q2"
@@ -27,11 +20,11 @@ def funcao_de_transicao(state, symbol):
             return "q4"
         elif symbol == "EOF":  # fim
             return "q5"
-        elif symbol == "<":
+        elif symbol == ">":
             return "q6"
         elif symbol == "=":
             return "q7"
-        elif symbol == ">":
+        elif symbol == "<":
             return "q8"
         elif symbol == "+" or symbol == "-" or symbol == "*" or symbol == "/":
             return "q9"
@@ -46,23 +39,23 @@ def funcao_de_transicao(state, symbol):
         else:
             return "q14"
 
-    if state == "q1":
+    elif state == "q1":
         if symbol in digitos:
             return "q1"
-        elif symbol == ".":  # \.
+        elif symbol == ".":
             return "q1_1"
-        elif symbol == "E" or symbol == "e":
+        elif symbol == "E" or symbol == "e":  # ?
             return "q1_3"
         else:
             return "q14"
 
-    if state == "q1_1":
+    elif state == "q1_1":
         if symbol in digitos:
             return "q1_2"
         else:
             return "q14"
 
-    if state == "q1_2":
+    elif state == "q1_2":
         if symbol in digitos:
             return "q1_2"
         elif symbol == "E" or symbol == "e":
@@ -70,7 +63,7 @@ def funcao_de_transicao(state, symbol):
         else:
             return "q14"
 
-    if state == "q1_6":
+    elif state == "q1_6":
         if symbol in digitos:
             return "q1_8"
         elif symbol == "+" or symbol == "-":
@@ -78,19 +71,19 @@ def funcao_de_transicao(state, symbol):
         else:
             return "q14"
 
-    if state == "q1_7":
+    elif state == "q1_7":
         if symbol in digitos:
             return "q1_8"
         else:
             return "q14"
 
-    if state == "q1_8":
+    elif state == "q1_8":
         if symbol in digitos:
             return "q1_8"
         else:
             return "q14"
 
-    if state == "q2":
+    elif state == "q2":
         if symbol in alfabeto:
             return "q2"
         elif symbol == '"':
@@ -100,13 +93,13 @@ def funcao_de_transicao(state, symbol):
 
     # if state == "q2_1": Do Nothing
 
-    if state == "q3":
+    elif state == "q3":
         if symbol in letras or symbol in digitos or symbol == '_':
             return "q3"
         else:
             return "q14"
 
-    if state == "q4":
+    elif state == "q4":
         if symbol in alfabeto:
             return "q4"
         elif symbol == "":
@@ -116,7 +109,7 @@ def funcao_de_transicao(state, symbol):
 
     # if state == "q5": Do Nothing
 
-    if state == "q6":
+    elif state == "q6":
         if symbol == "=":
             return "q7"
         else:
@@ -124,7 +117,7 @@ def funcao_de_transicao(state, symbol):
 
     # if state == "q7": Do Nothing
 
-    if state == "q8":
+    elif state == "q8":
         if symbol == ">" or symbol == "=":
             return "q7"
         elif symbol == "-":
@@ -143,48 +136,51 @@ def funcao_de_transicao(state, symbol):
     # if state == "q13": Do Nothing
 
     else:
-        return state
+        return "q14"
 
 
 def define_classe_tipo(state):
     classe = None
-    lexema = None
+    tipo = None
+    isFinal = True
     if state == "q1" or state == "q1_5":
         classe = "NUM"
-        lexema = "inteiro"
-    if state == "q1_2" or state == "q1_8":
+        tipo = "inteiro"
+    elif state == "q1_2" or state == "q1_8":
         classe = "NUM"
-        lexema = "real"
-    if state == "q2_1":
+        tipo = "real"
+    elif state == "q2_1":
         classe = "LIT"
-        lexema = "literal"
-    if state == "q3":
+        tipo = "literal"
+    elif state == "q3":
         classe = "ID"
-    if state == "q4_1":
+    elif state == "q4_1":
         classe = "COMENTARIO"
-    if state == "q5":
+    elif state == "q5":
         classe = "EOF"
-    if state == "q6" or state == "q7" or state == "q8":
+    elif state == "q6" or state == "q7" or state == "q8":
         classe = "OPR"
-    if state == "q8_1":
+    elif state == "q8_1":
         classe = "RCB"
-    if state == "q9":
+    elif state == "q9":
         classe = "OPM"
-    if state == "q10":
+    elif state == "q10":
         classe = "AB_P"
-    if state == "q11":
+    elif state == "q11":
         classe = "FC_P"
-    if state == "q12":
+    elif state == "q12":
         classe = "PT_V"
-    if state == "q13":
+    elif state == "q13":
         classe = "VIR"
-    if state == "q14":
+    elif state == "q14":
         classe = "ERRO"
+    else:
+        isFinal = False
 
-    return classe, lexema
+    return classe, tipo, isFinal
 
 
-print(funcao_de_transicao("q0", "{"))
-print(funcao_de_transicao("q0", "["))
-print(funcao_de_transicao("q0", "%"))
+# print(funcao_de_transicao("q0", "{"))
+# print(funcao_de_transicao("q0", "["))
+# print(funcao_de_transicao("q0", "%"))
 print(define_classe_tipo("q8_1"))

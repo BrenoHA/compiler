@@ -25,13 +25,22 @@ class Symbol_table:
                                                                       item.classe, item.tipo))
 
     def insert_table(self, my_Token):
-        print('Inserindo o Token(Lexema: {}, Classe: {}, Tipo: {} ):'.format(
-            my_Token.lexema, my_Token.classe, my_Token.tipo))
-        self.table.append(my_Token)
+
+        if(my_Token.lexema in palavras_reservadas):
+            return self.search_table(my_Token.lexema)
+        else:
+            if(my_Token.classe == "ID"):
+                # for element in self.table:
+                # TODO VER SE JÁ NÃO EXISTE O LEXEMA
+                print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
+                    my_Token.lexema, my_Token.classe, my_Token.tipo))
+                self.table.append(my_Token)
+                return my_Token
+            else:
+                return my_Token
 
     def search_table(self, lexema):
         hasToken = False
-        print('Procurando o Token com lexema: {}'.format(lexema))
         for item in self.table:
             if(item.lexema == lexema):
                 hasToken = True
@@ -52,10 +61,11 @@ class Symbol_table:
 
 
 t = Symbol_table()
-test_token = my_Token("lexAaaa", "clasAa", "TipoA")
+test_token = my_Token("lexAaaa", "clasAa", None)
+print(test_token)
 t.insert_table(test_token)
 # t.update_table('class_lexema', 'new_class_lexema')
-# t.get_table()
+
 t.get_tokens()
 # t.search_table("inicioo")
 
