@@ -1,4 +1,4 @@
-class my_Token:
+class Token_mgol:
     def __init__(self, lexema, classe,  tipo):
         self.lexema = lexema
         self.classe = classe

@@ -1,7 +1,3 @@
-from ast import Num
-from lib2to3.pgen2.grammar import opmap
-from ssl import OP_NO_RENEGOTIATION
-from typing import Literal
 from utils.guidelines import *
 
 
@@ -178,11 +174,3 @@ def define_classe_tipo(state):
         isFinal = False
 
     return classe, tipo, isFinal
-
-
-# print(funcao_de_transicao("q0", "{"))
-# print(funcao_de_transicao("q0", "["))
-# print(funcao_de_transicao("q0", '{'))
-# print(funcao_de_transicao("q4", "a"))
-# print(funcao_de_transicao("q4", '}'))
-# print(define_classe_tipo("q8_1"))

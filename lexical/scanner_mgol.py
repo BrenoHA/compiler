@@ -1,18 +1,29 @@
 import os
 from transitions import *
 from symbol_table import Symbol_table
-from my_token import my_Token
+from token_mgol import Token_mgol
 
 
-class my_Scanner:
+class Scanner_mgol:
 
     def __init__(self, text_file):
         self.codigo_fonte = []
         self.current_state = "q0"
         self.last_state = "q0"
         self.current_token = ""
-        self.elements_print: my_Token = []
-        self.read_text(text_file)
+        self.elements_print: Token_mgol = []
+        self.read_file(text_file)
+        self.print_inicia_scanner()
+
+    def print_inicia_scanner(self):
+        print("========================================================")
+        print("================ INICIANDO SCANNER =====================")
+        print("========================================================")
+
+    def print_elements(self):
+        print("Elements_print:")
+        for item in test_scanner.elements_print:
+            print(item)
 
     def pertence_alfabeto(self, symbol):
         if(symbol in alfabeto):
@@ -20,7 +31,7 @@ class my_Scanner:
         else:
             return False
 
-    def read_text(self, text_file):
+    def read_file(self, text_file):
         script_dir = os.path.dirname(__file__)
         abs_file_path = script_dir + '\\' + text_file
         abs_file_path = abs_file_path.replace('\\', '/')
@@ -48,7 +59,7 @@ class my_Scanner:
                     classe, tipo, isFinal = define_classe_tipo(
                         self.current_state)
                     if(isFinal == True):
-                        token = my_Token(
+                        token = Token_mgol(
                             self.current_token.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
                         self.elements_print.append(token_from_table)
@@ -70,7 +81,7 @@ class my_Scanner:
                     classe, tipo, isFinal = define_classe_tipo(
                         self.current_state)
                     if(isFinal == True):
-                        token = my_Token(
+                        token = Token_mgol(
                             self.current_token.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
                         if(classe != "COMENTARIO"):
@@ -82,21 +93,17 @@ class my_Scanner:
                             index_line + 1, index_char + 1, self.current_state))
 
         # Adiciona End Of File
-        final_token = my_Token("EOF", "EOF", None)
+        final_token = Token_mgol("EOF", "EOF", None)
         final_token_from_table = table.insert_table(final_token)
         self.elements_print.append(final_token_from_table)
 
 
 table = Symbol_table()
 
-test_scanner = my_Scanner("test.txt")
-print("========================================================")
-print("================ INICIANDO SCANNER =====================")
-print("========================================================")
+test_scanner = Scanner_mgol("test.txt")
+
 test_scanner.scanner()
 
-# table.get_table()
+test_scanner.print_elements()
 
-print("Elements_print:")
-for item in test_scanner.elements_print:
-    print(item)
+# table.get_table()
