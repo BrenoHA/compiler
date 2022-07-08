@@ -95,7 +95,7 @@ class my_Scanner:
 
 table = Symbol_table()
 
-test_scanner = my_Scanner("test.txt")
+test_scanner = my_Scanner("test_file_simple.txt")
 print("========================================================")
 print("================ INICIANDO SCANNER =====================")
 print("========================================================")
