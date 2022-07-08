@@ -12,5 +12,3 @@ class Token_mgol:
         self.classe = classe
         self.lexema = lexema
         self.tipo = tipo
-
-

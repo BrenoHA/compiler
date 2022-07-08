@@ -47,7 +47,6 @@ class Scanner_mgol:
             self.last_state = "q0"
             self.current_token = ""
 
-
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
                     print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
@@ -91,7 +90,3 @@ class Scanner_mgol:
         final_token = Token_mgol("EOF", "EOF", None)
         final_token_from_table = table.insert_table(final_token)
         self.elements_print.append(final_token_from_table)
-
-
-
-
