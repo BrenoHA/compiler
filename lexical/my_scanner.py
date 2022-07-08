@@ -44,12 +44,6 @@ class my_Scanner:
                     print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
                         index_line + 1, index_char + 1, char))
 
-                # if(char == "\\" and line[index_char+1] == "n"):
-                #     if(line[index_char-1] != '"' or line[index_char-1] != '{'):
-                #         print(line[index_char-1])
-                #         print(line[index_char])
-                #         print(line[index_char+1])
-                # Vendo futur_state
                 if(funcao_de_transicao(self.current_state, char) == "q14"):
                     classe, tipo, isFinal = define_classe_tipo(
                         self.current_state)
@@ -57,8 +51,7 @@ class my_Scanner:
                         token = my_Token(
                             self.current_token.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
-                        if(classe != "COMENTARIO"):
-                            self.elements_print.append(token_from_table)
+                        self.elements_print.append(token_from_table)
                         self.current_token = ""
                         self.current_state = "q0"
                     else:
@@ -80,7 +73,8 @@ class my_Scanner:
                         token = my_Token(
                             self.current_token.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
-                        self.elements_print.append(token_from_table)
+                        if(classe != "COMENTARIO"):
+                            self.elements_print.append(token_from_table)
                         self.current_token = ""
                         self.current_state = "q0"
                     else:
@@ -95,7 +89,7 @@ class my_Scanner:
 
 table = Symbol_table()
 
-test_scanner = my_Scanner("test_file_simple.txt")
+test_scanner = my_Scanner("test.txt")
 print("========================================================")
 print("================ INICIANDO SCANNER =====================")
 print("========================================================")

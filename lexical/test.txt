@@ -1,4 +1,5 @@
 inicio
+    {isso e um comentario}
     varinaaicio
         literal A, B;
         inteiro B;
@@ -31,5 +32,6 @@ inicio
     escreva "\n";
     escreva C;
     escreva "\n";
+    {isso e um comentario}
     escreva A;
 fim
