@@ -1,14 +1,12 @@
+from lexical.symbol_table import *
+from lexical.scanner_mgol import *
+
+
+
 def main():
-
-    print(">>>>")
-
-
-# Programa principal:
-# - Efetuará a abertura do arquivo fonte;
-# - Conterá uma estrutura de repetição que:
-#  -- Invocará a função SCANNER para que retorne um TOKEN por chamada;
-#  -- A cada TOKEN retornado pelo SCANNER, emitir mensagem conforme à seguir:
-#     Classe: Num, Lexema: 123, Tipo: NULL
-#  -- O loop só finalizará após a leitura de todo o Código Fonte
+    symbol_table = Symbol_table()
+    test_scanner = Scanner_mgol("test.txt")
+    test_scanner.scanner(symbol_table)
+    test_scanner.print_elements()
 
 main()

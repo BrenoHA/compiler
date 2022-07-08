@@ -14,10 +14,3 @@ class Token_mgol:
         self.tipo = tipo
 
 
-# - Lexema: armazenará a palavra computada;
-# - Classe: armazenará a classificação do lexema reconhecido;
-# - Tipo: armazenará o tipo de dado do lexema quando for possível determiná-lo. Em caso de
-# constantes numéricas ou literais, preencher com inteiro, real ou literal. Os demais casos, preencher
-# com NULO
-
-# 'Token:{{\n Lexema: {}\n Classe: {}\n Tipo: {}\n }}'.format(self.lexema, self.classe, self.tipo)

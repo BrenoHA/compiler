@@ -1,4 +1,4 @@
-from utils.guidelines import *
+from .utils.guidelines import *
 
 
 def funcao_de_transicao(state, symbol):

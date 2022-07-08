@@ -1,5 +1,5 @@
-from token_mgol import Token_mgol
-from utils.guidelines import *
+from .token_mgol import Token_mgol
+from .utils.guidelines import *
 
 
 class Symbol_table:

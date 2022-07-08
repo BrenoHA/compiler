@@ -1,7 +1,7 @@
 import os
-from transitions import *
-from symbol_table import Symbol_table
-from token_mgol import Token_mgol
+from .transitions import *
+from .symbol_table import Symbol_table
+from .token_mgol import Token_mgol
 
 
 class Scanner_mgol:
@@ -22,7 +22,7 @@ class Scanner_mgol:
 
     def print_elements(self):
         print("Elements_print:")
-        for item in test_scanner.elements_print:
+        for item in self.elements_print:
             print(item)
 
     def pertence_alfabeto(self, symbol):
@@ -41,14 +41,12 @@ class Scanner_mgol:
             self.codigo_fonte.append(line.replace("\n", ""))
         return self.codigo_fonte
 
-    def scanner(self):
+    def scanner(self, table):
         for index_line, line in enumerate(self.codigo_fonte):
             self.current_state = "q0"
             self.last_state = "q0"
             self.current_token = ""
 
-            # print current line
-            # print(f"Line ({index_line}) --> {line} ")
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
@@ -70,9 +68,6 @@ class Scanner_mgol:
                             index_line + 1, index_char + 1, self.current_state))
 
                 self.current_token += char
-                # print current column
-                # print(
-                #     f"Column ({index_char}) --> state: {self.current_state} | last_state: {self.last_state} | char: {char}")
                 self.last_state = self.current_state
                 self.current_state = funcao_de_transicao(
                     self.current_state, char)
@@ -98,12 +93,5 @@ class Scanner_mgol:
         self.elements_print.append(final_token_from_table)
 
 
-table = Symbol_table()
 
-test_scanner = Scanner_mgol("test.txt")
 
-test_scanner.scanner()
-
-test_scanner.print_elements()
-
-# table.get_table()
