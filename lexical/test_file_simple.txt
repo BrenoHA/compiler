@@ -1,1 +1,0 @@
-{123 se aux @ x 1 fimse}

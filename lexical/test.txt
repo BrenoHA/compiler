@@ -1,11 +1,11 @@
 inicio
     {isso e um comentario}
-    varinaaicio
-        literal A, B;
-        inteiro B;
+    varinaaicio {assad}
+        literal {assad}A, B;
+        inteiro{assad} B;
         inte%iro D;
         real C ;
-    varfim;
+    va{assad}rfim;
     escr.eva "Digite B:";
     leia B;
     esc#reva "Digite A:";

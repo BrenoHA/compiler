@@ -59,7 +59,8 @@ class Scanner_mgol:
                         token = Token_mgol(
                             self.current_token.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
-                        self.elements_print.append(token_from_table)
+                        if(classe != "COMENTARIO"):
+                            self.elements_print.append(token_from_table)
                         self.current_token = ""
                         self.current_state = "q0"
                     else:
