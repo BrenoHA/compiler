@@ -10,7 +10,7 @@ class Scanner_mgol:
         self.codigo_fonte = []
         self.current_state = "q0"
         self.last_state = "q0"
-        self.current_token = ""
+        self.current_lexema = ""
         self.elements_print: Token_mgol = []
         self.read_file(text_file)
         self.print_inicia_scanner()
@@ -45,31 +45,31 @@ class Scanner_mgol:
         for index_line, line in enumerate(self.codigo_fonte):
             self.current_state = "q0"
             self.last_state = "q0"
-            self.current_token = ""
+            self.current_lexema = ""
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
                     print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
                         index_line + 1, index_char + 1, char))
 
-                if(funcao_de_transicao(self.current_state, char) == "q14"):
+                if(get_next_state(self.current_state, char) == "q14"):
                     classe, tipo, isFinal = define_classe_tipo(
                         self.current_state)
                     if(isFinal == True):
                         token = Token_mgol(
-                            self.current_token.lstrip(), classe, tipo)
+                            self.current_lexema.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
                         if(classe != "COMENTARIO"):
                             self.elements_print.append(token_from_table)
-                        self.current_token = ""
+                        self.current_lexema = ""
                         self.current_state = "q0"
                     else:
                         print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
                             index_line + 1, index_char + 1, self.current_state))
 
-                self.current_token += char
+                self.current_lexema += char
                 self.last_state = self.current_state
-                self.current_state = funcao_de_transicao(
+                self.current_state = get_next_state(
                     self.current_state, char)
 
                 if(index_char == len(line)-1):
@@ -77,11 +77,11 @@ class Scanner_mgol:
                         self.current_state)
                     if(isFinal == True):
                         token = Token_mgol(
-                            self.current_token.lstrip(), classe, tipo)
+                            self.current_lexema.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
                         if(classe != "COMENTARIO"):
                             self.elements_print.append(token_from_table)
-                        self.current_token = ""
+                        self.current_lexema = ""
                         self.current_state = "q0"
                     else:
                         print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
@@ -89,5 +89,4 @@ class Scanner_mgol:
 
         # Adiciona End Of File
         final_token = Token_mgol("EOF", "EOF", None)
-        final_token_from_table = table.insert_table(final_token)
-        self.elements_print.append(final_token_from_table)
+        self.elements_print.append(final_token)

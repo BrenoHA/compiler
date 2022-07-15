@@ -24,34 +24,27 @@ class Symbol_table:
                 print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
                                                                       item.classe, item.tipo))
 
-    def insert_table(self, Token_mgol):
-
-        if(Token_mgol.lexema in palavras_reservadas):
-            return self.search_table(Token_mgol.lexema)
-        else:
-            if(Token_mgol.classe == "ID"):
-                if(not self.search_table(Token_mgol.lexema)):
-                    # print('Inserindo o Token (Lexema: {}, Classe: {}, Tipo: {}):'.format(
-                    #     Token_mgol.lexema, Token_mgol.classe, Token_mgol.tipo))
-                    self.table.append(Token_mgol)
-                return Token_mgol
-            else:
-                return Token_mgol
-
     def search_table(self, lexema):
         hasToken = False
         for item in self.table:
             if(item.lexema == lexema):
                 hasToken = True
-                # print(' -> Lexema: {} | Classe: {} | Tipo: {}'.format(item.lexema,
-                #                                                       item.classe, item.tipo))
                 return item
         if(hasToken == False):
-            # print('Token com lexema: "{}" não encontrado'.format(lexema))
             return None
 
+    def insert_table(self, Token_mgol):
+        if(Token_mgol.lexema in palavras_reservadas):
+            return self.search_table(Token_mgol.lexema)
+        else:
+            if(Token_mgol.classe == "ID"):
+                if(not self.search_table(Token_mgol.lexema)):
+                    self.table.append(Token_mgol)
+                return Token_mgol
+            else:
+                return Token_mgol
+
     def update_table(self, old_lexema, new_lexema):
-        # print('Atualizando o Token com lexema: {}'.format(old_lexema))
         if(self.search_table(old_lexema) is None):
             return("O Token atual não foi encontrado")
         else:

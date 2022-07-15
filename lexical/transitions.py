@@ -1,7 +1,7 @@
 from .utils.guidelines import *
 
 
-def funcao_de_transicao(state, symbol):
+def get_next_state(state, symbol):
 
     if state == "q0":
         if symbol == " ":
