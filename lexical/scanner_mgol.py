@@ -64,8 +64,8 @@ class Scanner_mgol:
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
-                        print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
-                            index_line + 1, index_char + 1, self.current_state))
+                        print("==> ERROR Linha: {} Coluna: {} =>  ".format(
+                            index_line + 1, index_char + 1)+ define_erro(self.current_state) )
 
                 self.current_lexema += char
                 self.last_state = self.current_state
@@ -84,8 +84,8 @@ class Scanner_mgol:
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
-                        print("==> ERROR Linha: {} Coluna: {} => O estado {} não é final".format(
-                            index_line + 1, index_char + 1, self.current_state))
+                        print("==> ERROR Linha: {} Coluna: {} => ".format(
+                            index_line + 1, index_char + 1)+ define_erro(self.current_state) )
 
         # Adiciona End Of File
         final_token = Token_mgol("EOF", "EOF", None)
