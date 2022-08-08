@@ -41,13 +41,13 @@ class Scanner_mgol:
             self.codigo_fonte.append(line.replace("\n", ""))
         return self.codigo_fonte
 
-    def scanner(self, table):
-        for index_line, line in enumerate(self.codigo_fonte):
+    def scanner(self, table,init_line,init_char):
+        for index_line, line in enumerate(self.codigo_fonte[init_line:]):
             self.current_state = "q0"
             self.last_state = "q0"
             self.current_lexema = ""
 
-            for index_char, char in enumerate(line):
+            for index_char, char in enumerate(line[init_char:]):
                 if(self.pertence_alfabeto(char) == False):
                     print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
                         index_line + 1, index_char + 1, char))
@@ -59,10 +59,11 @@ class Scanner_mgol:
                         token = Token_mgol(
                             self.current_lexema.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
-                        if(classe != "COMENTARIO"):
-                            self.elements_print.append(token_from_table)
                         self.current_lexema = ""
                         self.current_state = "q0"
+                        if(classe != "COMENTARIO"):
+                            self.elements_print.append(token_from_table)
+                            return token,init_line+index_line,init_char+index_char
                     else:
                         print("==> ERROR Linha: {} Coluna: {} =>  ".format(
                             index_line + 1, index_char + 1)+ define_erro(self.current_state) )
@@ -79,10 +80,12 @@ class Scanner_mgol:
                         token = Token_mgol(
                             self.current_lexema.lstrip(), classe, tipo)
                         token_from_table = table.insert_table(token)
-                        if(classe != "COMENTARIO"):
-                            self.elements_print.append(token_from_table)
                         self.current_lexema = ""
                         self.current_state = "q0"
+                        if(classe != "COMENTARIO"):
+                            self.elements_print.append(token_from_table)
+                            return token,init_line+index_line,init_char+index_char
+
                     else:
                         print("==> ERROR Linha: {} Coluna: {} => ".format(
                             index_line + 1, index_char + 1)+ define_erro(self.current_state) )
