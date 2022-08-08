@@ -7,4 +7,4 @@ demais_caracteres = [",", ";", ":", ".", "!", "?", "\\", "*",
 alfabeto = digitos + letras + demais_caracteres
 
 palavras_reservadas = ['inicio', 'varinicio', 'varfim', 'escreva', 'leia', 'se', 'entao',
-                       'fimse', 'repita', 'fimRepita', 'fim', 'inteiro', 'literal', 'real']
+                       'fimse', 'repita', 'fimrepita', 'fim', 'inteiro', 'literal', 'real']

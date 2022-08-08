@@ -25,6 +25,9 @@ class Scanner_mgol:
         for item in self.elements_print:
             print(item)
 
+    def return_elements(self):
+        return self.elements_print
+
     def pertence_alfabeto(self, symbol):
         if(symbol in alfabeto):
             return True
@@ -65,7 +68,7 @@ class Scanner_mgol:
                         self.current_state = "q0"
                     else:
                         print("==> ERROR Linha: {} Coluna: {} =>  ".format(
-                            index_line + 1, index_char + 1)+ define_erro(self.current_state) )
+                            index_line + 1, index_char + 1) + define_erro(self.current_state))
 
                 self.current_lexema += char
                 self.last_state = self.current_state
@@ -85,7 +88,7 @@ class Scanner_mgol:
                         self.current_state = "q0"
                     else:
                         print("==> ERROR Linha: {} Coluna: {} => ".format(
-                            index_line + 1, index_char + 1)+ define_erro(self.current_state) )
+                            index_line + 1, index_char + 1) + define_erro(self.current_state))
 
         # Adiciona End Of File
         final_token = Token_mgol("EOF", "EOF", None)
