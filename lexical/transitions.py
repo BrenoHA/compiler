@@ -175,13 +175,13 @@ def define_classe_tipo(state):
 
     return classe, tipo, isFinal
 
+
 def define_erro(state):
     if state == "q1_1":
         return "Float mal formado"
-    elif state == ("q1_3" or "q1_4" or "q1_6" or "q1_7" ):
+    elif state == ("q1_3" or "q1_4" or "q1_6" or "q1_7"):
         return "Notacao cientifica mal formada"
     elif state == "q2":
         return "Falta fechar aspas"
     elif state == "q4":
-        return "falta fechar chaves"
-    
+        return "Falta fechar chaves"
