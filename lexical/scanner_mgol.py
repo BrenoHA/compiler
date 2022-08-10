@@ -11,9 +11,10 @@ class Scanner_mgol:
         self.current_state = "q0"
         self.last_state = "q0"
         self.current_lexema = ""
-        self.elements_print: Token_mgol = []
+        self.elements_print = []
         self.read_file(text_file)
         self.print_inicia_scanner()
+        self.symbol_table = Symbol_table()
 
     def print_inicia_scanner(self):
         print("========================================================")
@@ -44,7 +45,7 @@ class Scanner_mgol:
             self.codigo_fonte.append(line.replace("\n", ""))
         return self.codigo_fonte
 
-    def scanner(self, table):
+    def scanner(self):
         for index_line, line in enumerate(self.codigo_fonte):
             self.current_state = "q0"
             self.last_state = "q0"
@@ -61,7 +62,8 @@ class Scanner_mgol:
                     if(isFinal == True):
                         token = Token_mgol(
                             self.current_lexema.lstrip(), classe, tipo)
-                        token_from_table = table.insert_table(token)
+                        token_from_table = self.symbol_table.insert_table(
+                            token)
                         if(classe != "COMENTARIO"):
                             self.elements_print.append(token_from_table)
                         self.current_lexema = ""
@@ -81,7 +83,8 @@ class Scanner_mgol:
                     if(isFinal == True):
                         token = Token_mgol(
                             self.current_lexema.lstrip(), classe, tipo)
-                        token_from_table = table.insert_table(token)
+                        token_from_table = self.symbol_table.insert_table(
+                            token)
                         if(classe != "COMENTARIO"):
                             self.elements_print.append(token_from_table)
                         self.current_lexema = ""
