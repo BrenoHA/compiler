@@ -80,12 +80,8 @@ class Parser_mgol:
             else:
                 print("ELSE <-----")
                 # Printar o erro
-                n_error = int(df_action[self.token_arr[index_token.classe]][self.state].replace('e', ''))
-                row_error = df_action.iloc[n_error]
-                available = (value for value in row_error if value != df_action[self.token_arr[index_token.classe]][self.state])
-                available_list = list(available)
-                print("==> ERRO SINTATICO Linha: {} Coluna: {} => recebeu: {}, disponiveis no estado {}: {}".format(
-                   [self.state], index_token.classe, index_token.classe, available_list[0], available_list[1:]))
+                error_translation(df_action, self.state,self.token_arr[index_token].classe)
+                break
             
             # Chamar uma rotina de recuperação ( PANIC )
 

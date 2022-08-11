@@ -39,3 +39,14 @@ def error_translation(df, estado, classe):
     available_list = list(available)
     print("==> ERRO SINTATICO Linha: {} Coluna: {} => recebeu: {}, disponiveis no estado {}: {}".format(
         estado, classe, classe, available_list[0], available_list[1:]))
+
+def holub(pstack,tokens):
+    while len(tokens) > 0:
+        npstack = pstack.copy()
+        while len(npstack) > 0:
+            if (action(npstack[-1],tokens[0]) != error):
+                return(npstack,tokens)
+            npstack.pop()
+        del tokens[0]
+    return None
+
