@@ -94,5 +94,5 @@ class Scanner_mgol:
                             index_line + 1, index_char + 1, define_erro(self.current_state)))
 
         # Adiciona End Of File
-        final_token = Token_mgol("EOF", "EOF", None)
+        final_token = Token_mgol("eof", "eof", None)
         self.elements_print.append(final_token)

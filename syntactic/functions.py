@@ -12,7 +12,7 @@ def fill_errors(df):
 
 
 def goto(estado, classe):
-    fill_errors(df_goto)
+    # fill_errors(df_goto)
     return int(df_goto[classe][estado])
 
 
