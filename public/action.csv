@@ -1,4 +1,4 @@
-State,inicio,varinicio,varfim,pt_v,id,vir,inteiro,real,literal,leia,escreva,lit,num,rcb,opm,se,ab_p,fc_p,entao,opr,fimse,repita,fimrepita,fim,eof
+State,inicio,varinicio,varfim,pt_v,id,vir,inteiro,real,literal,leia,escreva,lit,num,rcb,opm,se,ab_p,fc_p,entao,opr,fimse,repita,fimrepita,fim,EOF
 0,s2,,,,,,,,,,,,,,,,,,,,,,,,
 1,,,,,,,,,,,,,,,,,,,,,,,,,acc
 2,,s4,,,,,,,,,,,,,,,,,,,,,,,
