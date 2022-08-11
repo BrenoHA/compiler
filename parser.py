@@ -7,14 +7,13 @@ from syntactic.grammarRules import *
 class Parser_mgol:
 
     def __init__(self):
-        self.pilha = ['EOF', 0]
         self.pilha_aux = []
-        # Seta o estado com o último elemento da pilha
+        self.pilha = ['EOF', 0]
+        # (1) Seja a o primeiro símbolo de w$;
         self.state = self.pilha[-1]
         self.my_scanner = Scanner_mgol("test.txt")
         self.my_scanner.scanner()
         self.token_arr = self.my_scanner.return_elements()
-        # self.my_scanner.print_elements()
         self.is_final = False
 
     def print_inicia_parser(self):
@@ -25,25 +24,23 @@ class Parser_mgol:
     def parser(self):
         self.print_inicia_parser()
 
-        # (1) Seja a o primeiro símbolo de w$;
-
         index_token = 0
 
         # (2) while { /*Repita indefinidamente*/
         while not(self.is_final):
             # (3) seja s o estado no topo da pilha; if self.state == self.pilha[0]
             self.state = self.pilha[-1]
-            print(self.token_arr[index_token])
+            # print(self.token_arr[index_token])
             action_res = ''
             action_res = action(
                 self.state, self.token_arr[index_token].classe)
-            print(' --> action_res', action_res)
+            # print(' --> action_res', action_res)
             # (4) if (ACTION [s,a] = shift t ) {
             if action_res[0] == "s":
                 self.state = int(action_res.replace("s", ""))
                 # (5) empilha t na pilha;
                 self.pilha.append(self.state)
-                print(self.pilha)
+                # print(self.pilha)
 
                 # (6) seja a o próximo símbolo da entrada;
                 index_token = index_token + 1
@@ -65,33 +62,28 @@ class Parser_mgol:
 
                 goto_res = goto(
                     self.state, grammar_head)
-                print(' --> goto_res', goto_res)
+                # print(' --> goto_res', goto_res)
 
                 # (10) empilhe GOTO[t,A] na pilha;
                 self.state = goto_res
                 self.pilha.append(self.state)
 
                 # (11) imprima a produção A-> β ;
-                print('======================================')
-                print('============== ( {} )'.format(grammar_rule))
-                print('======================================')
+                print(grammar_rule)
 
             # (12) }else if (ACTION [s,a] = accept ) pare; /* a análise terminou*/
             elif action_res == "acc":
                 print("ACEITACAO <-----")
-                break
+                self.is_final = True
 
             # (13) else chame uma rotina de recuperação do erro;
             else:
                 print("ELSE <-----")
-                # ...
+                # Printar o erro
 
-            # FINAL???
-            if len(self.token_arr) == 10:
-                self.is_final == True
-                print("is_final True")
+                # Chamar uma rotina de recuperação ( PANIC )
 
-        print("fim while")
+                # Chamar uma segunda rotina de recuperação (tirar ; por ex)
 
 
 prs = Parser_mgol()
