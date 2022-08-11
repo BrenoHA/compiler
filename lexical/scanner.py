@@ -11,7 +11,7 @@ class Scanner_mgol:
         self.current_state = "q0"
         self.last_state = "q0"
         self.current_lexema = ""
-        self.elements_print = []
+        self.token_arr = []
         self.read_file(text_file)
         self.print_inicia_scanner()
         self.symbol_table = Symbol_table()
@@ -22,12 +22,12 @@ class Scanner_mgol:
         print("========================================================")
 
     def print_elements(self):
-        print("Elements_print:")
-        for item in self.elements_print:
+        print("Array Tokens:")
+        for item in self.token_arr:
             print(item)
 
     def return_elements(self):
-        return self.elements_print
+        return self.token_arr
 
     def pertence_alfabeto(self, symbol):
         if(symbol in alfabeto):
@@ -65,7 +65,7 @@ class Scanner_mgol:
                         token_from_table = self.symbol_table.insert_table(
                             token)
                         if(classe != "COMENTARIO"):
-                            self.elements_print.append(token_from_table)
+                            self.token_arr.append(token_from_table)
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
@@ -86,7 +86,7 @@ class Scanner_mgol:
                         token_from_table = self.symbol_table.insert_table(
                             token)
                         if(classe != "COMENTARIO"):
-                            self.elements_print.append(token_from_table)
+                            self.token_arr.append(token_from_table)
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
@@ -95,4 +95,4 @@ class Scanner_mgol:
 
         # Adiciona End Of File
         final_token = Token_mgol("eof", "eof", None)
-        self.elements_print.append(final_token)
+        self.token_arr.append(final_token)

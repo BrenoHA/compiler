@@ -10,7 +10,7 @@ def get_next_state(state, symbol):
             return "q2"
         elif symbol == "{":
             return "q4"
-        elif symbol == "EOF":  # fim
+        elif symbol == "eof":  # fim
             return "q5"
         elif symbol == ">":
             return "q6"
