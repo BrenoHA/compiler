@@ -1,7 +1,7 @@
 import os
 from .transitions import *
 from .symbol_table import Symbol_table
-from .token_mgol import Token_mgol
+from .token import Token_mgol
 
 
 class Scanner_mgol:

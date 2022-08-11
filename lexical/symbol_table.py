@@ -1,4 +1,4 @@
-from .token_mgol import Token_mgol
+from .token import Token_mgol
 from .utils.guidelines import *
 
 
