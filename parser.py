@@ -1,3 +1,4 @@
+import copy
 from lexical.symbol_table import *
 from lexical.scanner import *
 from syntactic.functions import *
@@ -7,13 +8,11 @@ from syntactic.grammarRules import *
 class Parser_mgol:
 
     def __init__(self):
-        self.pilha = ['eof', 0]
-        # (1) Seja a o primeiro símbolo de w$;
+        self.pilha = [0]
         self.state = self.pilha[-1]
         self.my_scanner = Scanner_mgol("test.txt")
         self.my_scanner.scanner()
         self.token_arr = self.my_scanner.return_elements()
-        self.my_scanner.print_elements()
         self.index_token = 0
         self.is_final = False
 
@@ -34,19 +33,17 @@ class Parser_mgol:
         print('o')
 
     def panic(self, token_arr):
-        while len(token_arr) > 0:
-            # if token_arr[self.index_token].classe != "EOF":
-            pilha_aux = self.pilha.copy()
+        while self.index_token < (len(token_arr) - 1):
+            pilha_aux = copy.deepcopy(self.pilha)
             while len(pilha_aux) > 0:
-                action_res = action(
+                acao = action(
                     pilha_aux[-1], token_arr[self.index_token].classe)
-                print(action_res)
-                if (action_res[0]) != "e":
-                    self.state = int(action_res[1:])  # s5
-                    self.pilha.append(self.state)
-                    self.index_token += 1  # ?
+                if (acao[0]) != "e":
+                    self.pilha = copy.deepcopy(pilha_aux)
+                    return
                 pilha_aux.pop()
-        return None
+            self.index_token += 1
+        return
 
     def parser(self):
         self.print_inicia_parser()
@@ -90,8 +87,6 @@ class Parser_mgol:
                     n_error, self.state, self.token_arr[self.index_token].classe)
 
                 self.panic(self.token_arr)
-
-            # Chamar uma rotina de recuperação ( PANIC )
 
             # Chamar uma segunda rotina de recuperação (tirar ; por ex)
 
