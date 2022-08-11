@@ -1,15 +1,15 @@
 inicio
 varinicio
 literal A, B;
-in#$fteiro B;
+inteiro B;
 inteiro D;
 real C ;
 varfim;
-es creva ""  Digite B:";
+escreva "Digite B:";
 leia B;
 escreva "Digite A:";
 leia A;
-se(B>2){{{}}
+se(B>2)
 entao
 se(B<=4)
 entao

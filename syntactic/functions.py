@@ -11,7 +11,7 @@ def fill_errors(df):
 
 def goto(estado, classe):
     fill_errors(df_goto)
-    return df_goto[classe][estado]
+    return int(df_goto[classe][estado])
 
 
 def action(estado, classe):

@@ -53,7 +53,7 @@ class Scanner_mgol:
 
             for index_char, char in enumerate(line):
                 if(self.pertence_alfabeto(char) == False):
-                    print("==> ERROR Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
+                    print("==> ERRO LEXICO Linha: {} Coluna: {} => Caracter {} não pertence ao alfabeto".format(
                         index_line + 1, index_char + 1, char))
 
                 if(get_next_state(self.current_state, char) == "q14"):
@@ -69,7 +69,7 @@ class Scanner_mgol:
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
-                        print("==> ERROR Linha: {} Coluna: {} => {}".format(
+                        print("==> ERRO LEXICO Linha: {} Coluna: {} => {}".format(
                             index_line + 1, index_char + 1, define_erro(self.current_state)))
 
                 self.current_lexema += char
@@ -90,7 +90,7 @@ class Scanner_mgol:
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
-                        print("==> ERROR Linha: {} Coluna: {} => {}".format(
+                        print("==> ERRO LEXICO Linha: {} Coluna: {} => {}".format(
                             index_line + 1, index_char + 1, define_erro(self.current_state)))
 
         # Adiciona End Of File

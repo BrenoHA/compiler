@@ -140,34 +140,34 @@ def define_classe_tipo(state):
     tipo = None
     isFinal = True
     if state == "q1" or state == "q1_5":
-        classe = "NUM"
+        classe = "num"
         tipo = "inteiro"
     elif state == "q1_2" or state == "q1_8":
-        classe = "NUM"
+        classe = "num"
         tipo = "real"
     elif state == "q2_1":
-        classe = "LIT"
+        classe = "lit"
         tipo = "literal"
     elif state == "q3":
-        classe = "ID"
+        classe = "id"
     elif state == "q4_1":
-        classe = "COMENTARIO"
+        classe = "comentario"
     elif state == "q5":
-        classe = "EOF"
+        classe = "eof"
     elif state == "q6" or state == "q7" or state == "q8":
-        classe = "OPR"
+        classe = "opr"
     elif state == "q8_1":
-        classe = "RCB"
+        classe = "rcb"
     elif state == "q9":
-        classe = "OPM"
+        classe = "opm"
     elif state == "q10":
-        classe = "AB_P"
+        classe = "ab_p"
     elif state == "q11":
-        classe = "FC_P"
+        classe = "fc_p"
     elif state == "q12":
-        classe = "PT_V"
+        classe = "pt_v"
     elif state == "q13":
-        classe = "VIR"
+        classe = "vir"
     elif state == "q14":
         classe = "ERRO"
     else:
