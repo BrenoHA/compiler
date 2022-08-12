@@ -73,12 +73,6 @@ class Scanner_mgol:
                         token_from_table = self.symbol_table.insert_table(
                             token)
                         if(classe != "COMENTARIO"):
-                            # setattr(type(token_from_table),
-                            #         "line", index_line + 1)
-                            # setattr(type(token_from_table),
-                            #         "column", index_char + 1)
-                            # print('['+str(token_from_table.line) +
-                            #       ','+str(token_from_table.column)+']')
                             self.token_arr.append(token_from_table)
                             self.position_arr.append(
                                 tuple((index_line + 1, index_char + 1)))
@@ -121,10 +115,4 @@ class Scanner_mgol:
         final_token = Token_mgol("eof", "eof", None)
         self.position_arr.append(
             tuple((i_l + 1, i_c + 1)))
-        # setattr(type(final_token),
-        #         "line", i_l + 1)
-        # setattr(type(final_token),
-        #         "column", i_c + 1)
-        # print('['+str(token_from_table.line) +
-        #       ','+str(token_from_table.column)+']')
         self.token_arr.append(final_token)

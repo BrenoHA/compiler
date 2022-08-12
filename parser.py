@@ -30,32 +30,38 @@ class Parser_mgol:
             if value != df_action[token.classe][state]:
                 expected_classes.append(available_classes[index_value])
         # available_list = list(available)
-        print("==> ERRO SINTATICO Estado:{} Linha: {} Coluna: {} Recebeu: ['{}'] Esperado: {}".format(
-            state, position[0], position[1], token.classe, expected_classes))
-
-    def outra_recuperação(self):
-        print('o')
+        print("==> ERRO SINTATICO Linha: {} Coluna: {} Recebeu: ['{}'] Esperado: {}".format(
+            position[0], position[1], token.classe, expected_classes))
 
     def panic(self, token_arr):
+        print('Rotina de recuperação de erro -> Modo Panico')
         while self.index_token < (len(token_arr) - 1):
             pilha_aux = copy.deepcopy(self.pilha)
             while len(pilha_aux) > 0:
-                acao = action(
+                action_res = action(
                     pilha_aux[-1], token_arr[self.index_token].classe)
-                if (acao[0]) != "e":
+                if (action_res[0]) != "e":
                     self.pilha = copy.deepcopy(pilha_aux)
+                    print('Rotina de recuperação de erro -> Modo Panico -> Sucesso')
                     return
                 pilha_aux.pop()
             self.index_token += 1
         return
 
-def single_shift(n_error):
-    shift_counter = 0
-    row_error = df_action.iloc[n_error]
-    for value in row_error:
-        if str(value)[0] == 's':
-            shift_counter += 1
-    # if(shift_counter == 1):
+    def single_shift(self, n_error, token_arr):
+        print('Rotina de recuperação de erro -> Single Shift')
+        shift_counter = 0
+        row_error = df_action.iloc[n_error]
+        aux = 0
+        for value in row_error:
+            if str(value)[0] == 's':
+                aux = int(value.replace("s", ""))
+                shift_counter += 1
+        if(shift_counter == 1):
+            self.pilha.append(aux)
+            print('Rotina de recuperação de erro -> Single Shift -> Sucesso')
+        else:
+            self.panic(token_arr)
 
     def parser(self):
         self.print_inicia_parser()
@@ -98,9 +104,7 @@ def single_shift(n_error):
                 self.print_error(
                     n_error, self.state, self.token_arr[self.index_token], self.position_arr[self.index_token])
 
-                self.panic(self.token_arr)
-
-            # Chamar uma segunda rotina de recuperação (tirar ; por ex)
+                self.single_shift(n_error, self.token_arr)
 
 
 prs = Parser_mgol()

@@ -5,8 +5,8 @@ class Token_mgol:
         self.tipo = tipo
 
     # Print token
-    # def __str__(self):
-    #     return ' --> Lexema: {} | Classe: {} | Tipo: {}'.format(self.lexema, self.classe, self.tipo)
+    def __str__(self):
+        return ' --> Lexema: {} | Classe: {} | Tipo: {}'.format(self.lexema, self.classe, self.tipo)
 
     def set_token(self, lexema, classe,  tipo):
         self.classe = classe
