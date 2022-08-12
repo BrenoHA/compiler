@@ -64,11 +64,10 @@ class Scanner_mgol:
                             self.current_lexema.lstrip(), classe, tipo)
                         token_from_table = self.symbol_table.insert_table(
                             token)
-                        print(type(token_from_table))
                         if(classe != "COMENTARIO"):
-                            token_from_table.line = property(index_line + 1)
-                            token_from_table.column= property(index_char + 1)
-                            self.token_arr.append(token_from_table)
+                            setattr(type(token_from_table), "line", index_line + 1)
+                            setattr(type(token_from_table), "column", index_char + 1)
+                            self.token_arr.append(token_from_table)                            
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
@@ -89,9 +88,9 @@ class Scanner_mgol:
                         token_from_table = self.symbol_table.insert_table(
                             token)
                         if(classe != "COMENTARIO"):
+                            setattr(type(token_from_table), "line", index_line + 1)
+                            setattr(type(token_from_table), "column", index_char + 1)
                             self.token_arr.append(token_from_table)
-                            token_from_table.line = property(index_line + 1)
-                            token_from_table.column= property(index_char + 1)
                         self.current_lexema = ""
                         self.current_state = "q0"
                     else:
