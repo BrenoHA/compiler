@@ -13,6 +13,7 @@ class Parser_mgol:
         self.my_scanner = Scanner_mgol("test.txt")
         self.my_scanner.scanner()
         self.token_arr = self.my_scanner.return_elements()
+        self.position_arr = self.my_scanner.return_position_arr()
         self.index_token = 0
         self.is_final = False
 
@@ -21,16 +22,16 @@ class Parser_mgol:
         print("================= INICIANDO PARSER =====================")
         print("========================================================")
 
-    def print_error(self, n_error, state, token):
+    def print_error(self, n_error, state, token, position):
         row_error = df_action.iloc[n_error]
         available_classes = list(df_action.columns[1:])
-        expected_classes = [] 
+        expected_classes = []
         for index_value, value in enumerate(row_error):
             if value != df_action[token.classe][state]:
                 expected_classes.append(available_classes[index_value])
         # available_list = list(available)
         print("==> ERRO SINTATICO Estado:{} Linha: {} Coluna: {} Recebeu: ['{}'] Esperado: {}".format(
-            state, token.line, token.column, token.classe, expected_classes))
+            state, position[0], position[1], token.classe, expected_classes))
 
     def outra_recuperação(self):
         print('o')
@@ -56,6 +57,10 @@ class Parser_mgol:
             action_res = ''
             action_res = action(
                 self.state, self.token_arr[self.index_token].classe)
+
+            # print('>>>', self.token_arr[self.index_token].classe)
+            # print('>>>', self.token_arr[self.index_token].line)
+            # print('>>>', self.token_arr[self.index_token].column)
 
             if action_res[0] == "s":
                 self.state = int(action_res.replace("s", ""))
@@ -87,10 +92,8 @@ class Parser_mgol:
             else:
                 n_error = int(action_res.replace("e", ""))
                 self.print_error(
-                    n_error, self.state, self.token_arr[self.index_token])
-                print('>>>',self.token_arr[self.index_token].classe)
-                print('>>>',self.token_arr[self.index_token].line)
-                print('>>>',self.token_arr[self.index_token].column)
+                    n_error, self.state, self.token_arr[self.index_token], self.position_arr[self.index_token])
+
                 self.panic(self.token_arr)
 
             # Chamar uma segunda rotina de recuperação (tirar ; por ex)
