@@ -49,6 +49,14 @@ class Parser_mgol:
             self.index_token += 1
         return
 
+def single_shift(n_error):
+    shift_counter = 0
+    row_error = df_action.iloc[n_error]
+    for value in row_error:
+        if str(value)[0] == 's':
+            shift_counter += 1
+    # if(shift_counter == 1):
+
     def parser(self):
         self.print_inicia_parser()
 
@@ -57,10 +65,6 @@ class Parser_mgol:
             action_res = ''
             action_res = action(
                 self.state, self.token_arr[self.index_token].classe)
-
-            # print('>>>', self.token_arr[self.index_token].classe)
-            # print('>>>', self.token_arr[self.index_token].line)
-            # print('>>>', self.token_arr[self.index_token].column)
 
             if action_res[0] == "s":
                 self.state = int(action_res.replace("s", ""))
