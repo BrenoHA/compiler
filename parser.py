@@ -21,13 +21,16 @@ class Parser_mgol:
         print("================= INICIANDO PARSER =====================")
         print("========================================================")
 
-    def print_error(self, n_error, estado, classe):
+    def print_error(self, n_error, state, token):
         row_error = df_action.iloc[n_error]
-        available = (value for value in row_error if value !=
-                     df_action[classe][estado])
-        available_list = list(available)
-        print("==> ERRO SINTATICO Linha: {} Coluna: {} Recebeu: ['{}'] Esperado: {}".format(
-            999, 999, classe, available_list[1:]))
+        available_classes = list(df_action.columns[1:])
+        expected_classes = [] 
+        for index_value, value in enumerate(row_error):
+            if value != df_action[token.classe][state]:
+                expected_classes.append(available_classes[index_value])
+        # available_list = list(available)
+        print("==> ERRO SINTATICO Estado:{} Linha: {} Coluna: {} Recebeu: ['{}'] Esperado: {}".format(
+            state, token.line, token.column, token.classe, expected_classes))
 
     def outra_recuperação(self):
         print('o')
@@ -84,7 +87,7 @@ class Parser_mgol:
             else:
                 n_error = int(action_res.replace("e", ""))
                 self.print_error(
-                    n_error, self.state, self.token_arr[self.index_token].classe)
+                    n_error, self.state, self.token_arr[self.index_token])
 
                 self.panic(self.token_arr)
 
