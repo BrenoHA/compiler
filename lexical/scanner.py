@@ -67,6 +67,7 @@ class Scanner_mgol:
                         if(classe != "COMENTARIO"):
                             setattr(type(token_from_table), "line", index_line + 1)
                             setattr(type(token_from_table), "column", index_char + 1)
+                            # print('['+str(token_from_table.line)+','+str(token_from_table.column)+']')
                             self.token_arr.append(token_from_table)                            
                         self.current_lexema = ""
                         self.current_state = "q0"
@@ -90,6 +91,7 @@ class Scanner_mgol:
                         if(classe != "COMENTARIO"):
                             setattr(type(token_from_table), "line", index_line + 1)
                             setattr(type(token_from_table), "column", index_char + 1)
+                            # print('['+str(token_from_table.line)+','+str(token_from_table.column)+']')
                             self.token_arr.append(token_from_table)
                         self.current_lexema = ""
                         self.current_state = "q0"

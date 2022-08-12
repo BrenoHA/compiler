@@ -88,7 +88,9 @@ class Parser_mgol:
                 n_error = int(action_res.replace("e", ""))
                 self.print_error(
                     n_error, self.state, self.token_arr[self.index_token])
-
+                print('>>>',self.token_arr[self.index_token].classe)
+                print('>>>',self.token_arr[self.index_token].line)
+                print('>>>',self.token_arr[self.index_token].column)
                 self.panic(self.token_arr)
 
             # Chamar uma segunda rotina de recuperação (tirar ; por ex)
